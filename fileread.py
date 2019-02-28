@@ -10,7 +10,7 @@ def v_to_h(content):
     #Horizontal to list
     for index, line in enumerate(content):
         if index != 0:
-            
+
             array = []
             items = str(line).split(' ')
             if(items[0] == 'H'):
@@ -48,19 +48,18 @@ def Score(pic1, pic2):
         for tag2 in tags1:
             if tag1 == tag2:
                 isCom = True
-            
+
         if isCom:
             com = com + 1
         else:
             diff1 = diff1 + 1
-        
-    
+
     if(diff1 > com):
         diff2 = diff1 - com
     else:
-        diff2 = com -  diff1
+        diff2 = com - diff1
 
-    return min([diff1,diff2,com])
+    return min([diff1, diff2, com])
 
 
 def Order(listofslides):
@@ -69,25 +68,25 @@ def Order(listofslides):
 	score = 0
 	index = 0
 	while len(newlistofslides) != 0:
-		curr_slide =newlistofslides[index]
-		rest = newlistofslides.remove(newlistofslides[i])
-		next_index,curr_score= Bestscore(x,rest)
+		curr_slide = newlistofslides[index]
+		rest = newlistofslides.remove(newlistofslides[index])
+		next_index, curr_score = Bestscore(curr_slide, rest)
 		sequence.append(newlistofslides[next_index])
 		score += curr_score
 		index = next_index
 
-
 	return sequence, score
 
-
-def Bestscore(slide,listofslides):
+def Bestscore(slide, listofslides):
 	curr_score = 0
 	best_score = 0
 	index = 0
-	for i in range(len(listofslides)):
-		curr_score = Score(slide,listofslides[i])
+    for i, list_slide in enumerate(listofslides):
+		curr_score = Score(slide, list_slide)
 		if curr_score >= best_score:
 			best_score = curr_score
 			index = i
-
 	return index, best_score
+
+#output, score = Order(newList)
+#print(output, score)
