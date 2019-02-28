@@ -63,30 +63,32 @@ def Score(pic1, pic2):
 
 
 def Order(listofslides):
-	sequence = []
-	newlistofslides = listofslides
-	score = 0
-	index = 0
-	while len(newlistofslides) != 0:
-		curr_slide = newlistofslides[index]
-		rest = newlistofslides.remove(newlistofslides[index])
-		next_index, curr_score = Bestscore(curr_slide, rest)
-		sequence.append(newlistofslides[next_index])
-		score += curr_score
-		index = next_index
+    sequence = []
+    newlistofslides = listofslides
+    score = 0
+    index = 0
+    while len(newlistofslides) != 0:
+        curr_slide = newlistofslides[index]
+        rest = newlistofslides
+        del rest[index]
+        next_index, curr_score = Bestscore(curr_slide, rest)
+        sequence.append(newlistofslides[next_index])
+        score += curr_score
+        index = next_index
 
-	return sequence, score
+    return sequence, score
 
 def Bestscore(slide, listofslides):
-	curr_score = 0
-	best_score = 0
-	index = 0
+    curr_score = 0
+    best_score = 0
+    index = 0
     for i, list_slide in enumerate(listofslides):
-		curr_score = Score(slide, list_slide)
-		if curr_score >= best_score:
-			best_score = curr_score
-			index = i
-	return index, best_score
+        curr_score = Score(slide, list_slide)
+        if curr_score >= best_score:
+            best_score = curr_score
+            index = i
+    return index, best_score
 
-#output, score = Order(newList)
-#print(output, score)
+
+output, score = Order(newList)
+print(output, score)
