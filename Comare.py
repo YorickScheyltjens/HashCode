@@ -1,4 +1,4 @@
-def order(listofslides):
+def Order(listofslides):
 	sequence = []
 	newlistofslides = listofslides
 	score = 0
@@ -6,7 +6,7 @@ def order(listofslides):
 	while len(newlistofslides) != 0:
 		curr_slide =newlistofslides[index]
 		rest = newlistofslides.remove(newlistofslides[i])
-		next_index,curr_score= bestscore(x,rest)
+		next_index,curr_score= Bestscore(x,rest)
 		sequence.append(newlistofslides[next_index])
 		score += curr_score
 		index = next_index
@@ -15,7 +15,7 @@ def order(listofslides):
 	return sequence, score
 
 
-def bestscore(slide,listofslides):
+def Bestscore(slide,listofslides):
 	curr_score = 0
 	best_score = 0
 	index = 0

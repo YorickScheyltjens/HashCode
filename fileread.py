@@ -7,7 +7,6 @@ files = ['b_lovely_landscapes.txt']
 def v_to_h(content):
     newList = []
 
-    
     #Horizontal to list
     for index, line in enumerate(content):
         if index != 0:
@@ -27,8 +26,6 @@ def v_to_h(content):
     return newList
 
 
-
-
 for file in files:
     with open(file) as f:
         content = f.readlines()
@@ -36,20 +33,11 @@ for file in files:
     newList = v_to_h(content)
 
 
-    
-
-    
-
-        
-
-
 def Score(pic1, pic2):
     score = 0
 
     tags1 = pic1[-(len(pic1)-2)]
     tags2 = pic2[-(len(pic2)-2)]
-
-
 
     diff1 = 0
     diff2 = 0
@@ -72,23 +60,34 @@ def Score(pic1, pic2):
     else:
         diff2 = com -  diff1
 
-
     return min([diff1,diff2,com])
 
 
-    
+def Order(listofslides):
+	sequence = []
+	newlistofslides = listofslides
+	score = 0
+	index = 0
+	while len(newlistofslides) != 0:
+		curr_slide =newlistofslides[index]
+		rest = newlistofslides.remove(newlistofslides[i])
+		next_index,curr_score= Bestscore(x,rest)
+		sequence.append(newlistofslides[next_index])
+		score += curr_score
+		index = next_index
 
 
+	return sequence, score
 
 
+def Bestscore(slide,listofslides):
+	curr_score = 0
+	best_score = 0
+	index = 0
+	for i in range(len(listofslides)):
+		curr_score = Score(slide,listofslides[i])
+		if curr_score >= best_score:
+			best_score = curr_score
+			index = i
 
-
-
-        
-
-
-
-    
-
-
-
+	return index, best_score
