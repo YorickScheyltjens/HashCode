@@ -1,34 +1,46 @@
-files = ['b_lovely_landscapes.txt','c_memorable_moments.txt','d_pet_pictures.txt', 'e_shiny_selfies.txt']
+import time
+
+#files = ['b_lovely_landscapes.txt','c_memorable_moments.txt','d_pet_pictures.txt', 'e_shiny_selfies.txt']
+files = ['b_lovely_landscapes.txt']
+
+
+def v_to_h(content):
+    newList = []
+
+    
+    #Horizontal to list
+    for index, line in enumerate(content):
+        if index != 0:
+            
+            array = []
+            items = str(line).split(' ')
+            if(items[0] == 'H'):
+                array.append(index)
+                array.append(0)
+
+                for i, tag in enumerate(items):
+                    if i != 0 and i != 1:
+                        array.append(tag)
+
+            newList.append(array)
+
+    return newList
+
+
+
 
 for file in files:
     with open(file) as f:
         content = f.readlines()
 
-    # Number of photos
-    count = content[0]
+    newList = v_to_h(content)
 
-    for x in range(1, count):
-        line = content[x].split(' ')
 
-        flip = line[0]
-        number_of_tags = line[1]
+    
 
-        for y in range(2, number_of_tags):
+    
 
         
-def v_to_h(content):
-    newList = []
-    array = []
-
-    for index, item in enumerate(content):
-        split = str(item).split(' ')
-
-        if(split[0] == 'H'):
-            array[0] == 
-
-
-    return newList
-
 
 
 def Score(pic1, pic2):
@@ -55,12 +67,13 @@ def Score(pic1, pic2):
             diff1 = diff1 + 1
         
     
-    if(dff1 > com):
+    if(diff1 > com):
         diff2 = diff1 - com
     else:
         diff2 = com -  diff1
 
-    return (diff1 + com + diff2)
+
+    return min([diff1,diff2,com])
 
 
     
